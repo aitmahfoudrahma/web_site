@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un client</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 750px;
+            width: 90%;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0e6251;
+            text-shadow: 7px 5px 0 #a3e4d7;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: #dedede;
+            padding: 50px;
+            border-radius: 5px;
+            width: 650px;
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2184c9;
+        }
+
+        .error-message, .success-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .success-message {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class=" container">
+    <h1>Ajouter un client</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.Nom_client.id_for_label }}">Nom du client:</label>
+        {{ form.Nom_client }}
+        <br>
+
+        <label for="{{ form.Prenom_client.id_for_label }}">Prénom du client:</label>
+        {{ form.Prenom_client }}
+        <br>
+
+        <label for="{{ form.Age_Client.id_for_label }}">L'âge du client:</label>
+        {{ form.Age_Client }}
+        <br>
+        <label for="{{ form.Num_sec_social_client.id_for_label }}">Numéro de sécurité sociale:</label>
+        {{ form.Num_sec_social_client }}
+        <br>
+        <label for="{{ form.Type_assurance.id_for_label }}">Type d'assurance:</label>
+        {{ form.Type_assurance }}
+        <br>
+        <button type="submit">Ajouter le client</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+body {
+    background-image: url('https://img.freepik.com/vecteurs-libre/antecedents-medicaux-propres_53876-97927.jpg?w=1380&t=st=1698863667~exp=1698864267~hmac=373020ddd6ef93ea2bf3a0eaec7bf14f9daf46f95ff3e6b21ecd26876bfdb585');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: transparent;
+}
+
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+.view-buttons, .action-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-success, .btn-warning {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #2471a3;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #229954;
+    color: #fff;
+}
+
+.btn-warning {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-warning:hover {
+    background-color: #1e5f74;
+}

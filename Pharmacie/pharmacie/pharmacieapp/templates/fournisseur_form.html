@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un fournisseur</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            width: 80%;
+            padding: 20px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0e6251;
+            text-shadow: 7px 5px 0 #a3e4d7;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #dedede ;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2184c9;
+        }
+
+        .error-message, .success-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .success-message {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter un fournisseur</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.Nom_fournisseur.id_for_label }}">Nom du fournisseur:</label>
+                {{ form.Nom_fournisseur }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.Adresse_fournisseur.id_for_label }}">Adresse du fournisseur:</label>
+                {{ form.Adresse_fournisseur }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.Tel_fournisseur.id_for_label }}">Téléphone du fournisseur:</label>
+                {{ form.Tel_fournisseur }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.Mail_fournisseur.id_for_label }}">Mail du fournisseur:</label>
+                {{ form.Mail_fournisseur }}
+            </div>
+
+            <button type="submit">Ajouter le fournisseur</button>
+        </form>
+
+        {% if form.errors %}
+        <div class="error-message">
+            <p>Invalid information! Please check your inputs.</p>
+        </div>
+        {% elif form.is_bound %}
+        <div class="success-message">
+            <p>Fournisseur ajouté avec succès!</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

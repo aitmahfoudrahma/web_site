@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faire une vente</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0e6251;
+            text-shadow: 7px 5px 0 #a3e4d7;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #dedede ;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2184c9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2ecc71;
+        }
+
+        .error-message,
+        .success-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .success-message {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Faire une vente</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="{{ form.ID_medic.id_for_label }}">Le médicament:</label>
+            {{ form.ID_medic }}
+
+            <label for="{{ form.ID_client.id_for_label }}">Le client:</label>
+            {{ form.ID_client }}
+
+            <label for="{{ form.Date_vente.id_for_label }}">La date de la vente (yyyy-mm-dd):</label>
+            {{ form.Date_vente }}
+
+            <label for="{{ form.Quantite_vendue.id_for_label }}">La quantité:</label>
+            {{ form.Quantite_vendue }}
+
+            <button type="submit">Faire la vente</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Médicament</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicament in selected_medicaments %}
+                    <tr>
+                        <td>{{ medicament.name }}</td>
+                        <td>{{ medicament.quantity }}</td>
+                        <td>{{ medicament.unit_price }}</td>
+                        <td>{{ medicament.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Total: {{ total_price }}</h3>
+
+        {% if form.errors %}
+            <div class="error-message">
+                <p>Invalid information! Please check your inputs.</p>
+            </div>
+        {% elif form.is_bound %}
+            <div class="success-message">
+                <p>Vente effectuée avec succès!</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

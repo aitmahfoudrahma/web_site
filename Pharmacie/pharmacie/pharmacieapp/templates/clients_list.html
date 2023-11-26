@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des clients</title>
+</head>
+<body>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/vecteurs-libre/antecedents-medicaux-propres_53876-97927.jpg?w=1380&t=st=1698863667~exp=1698864267~hmac=373020ddd6ef93ea2bf3a0eaec7bf14f9daf46f95ff3e6b21ecd26876bfdb585');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: transparent;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            font-size: 62px;
+            color: #0b5345;
+            text-shadow: 7px 5px 0   #48c9b0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead {
+            background-color: #76d7c4; /* Couleur de fond de l'en-tête */
+            color: white; /* Couleur du texte de l'en-tête */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Couleur de fond des lignes paires */
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #e1f0e1; /* Couleur de fond des lignes impaires */
+        }
+    </style>
+
+    <h1>Liste des clients</h1>
+
+    <table id="client-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Age</th>
+                <th>Numéro de sécurité sociale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.Nom_client }}</td>
+                <td>{{ client.Prenom_client }}</td>
+                <td>{{ client.Age_Client }}</td>
+                <td>{{ client.Num_sec_social_client }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+<script>
+    $(document).ready(function() {
+        $('#client-table').DataTable(); // This line will enable sorting for your table
+    });
+</script>
